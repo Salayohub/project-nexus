@@ -1,11 +1,18 @@
-import React from 'react'
+import { getAllProducts } from "@/lib/store";
+import ProductCard from "@/components/cards/productCard";
 
-function index() {
+export default function ProductsPage() {
+  const products = getAllProducts();
+
   return (
-    <div>
-      <h1 className='font-bold text-7xl text-blue-500'>helloworld</h1>
-    </div>
-  )
-}
+    <div className="container mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold mb-6">All Products</h1>
 
-export default index
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}

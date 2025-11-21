@@ -1,23 +1,12 @@
-import { ReactComponentProps } from "../../interface";
-import Footer from "./Footer"
-import Header from "./Header"
-import { ThemeProvider } from "../../contexts/ThemeContext";
+import Header from "./Header";
+import Footer from "./Footer";
 
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-white dark:bg-black transition-colors">
-        <ThemeProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </ThemeProvider>
-      </body>
-    </html>
+    <div className="bg-white">
+      <Header />
+      <main className="min-h-screen">{children}</main>
+      <Footer />
+    </div>
   );
 }
