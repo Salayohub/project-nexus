@@ -1,9 +1,3 @@
-# project Nexus is the final project to complete my ALX prodev frontend developer
-
-Absolutely! Here’s a **fully comprehensive, professional README.md** for your e-commerce project “Nexus.” I’ve incorporated everything you provided, plus best practices and standard conventions for modern e-commerce projects.
-
----
-
 # Nexus E-commerce Project
 
 ## Project Overview
