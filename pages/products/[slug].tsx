@@ -1,75 +1,32 @@
-import { GetStaticPropsContext } from "next";
-import { getAllProducts, getProductBySlug, getProductsByCategory, product } from "@/lib/store";
+// pages/products/[slug].tsx
+import { GetServerSideProps } from "next";
+import ProductDetailsPage from "@/components/common/ProductDetails";
 import { Product } from "@/interface";
+import { SingleProductPageProps } from "@/interface";
 
-export default function ProductDetailPage({ product }: { product: Product }) {
-  return (
-    <div className="container mx-auto px-4 py-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-        {/* Image */}
-        <div>
-          <img
-            src={product.image}
-            alt={product.title}
-            className="w-full h-[450px] object-cover rounded-lg shadow"
-          />
-        </div>
-
-        {/* Product Info */}
-        <div>
-          <h1 className="text-4xl font-bold">{product.title}</h1>
-
-          <div className="mt-3 flex items-center gap-3">
-            <span className="text-3xl font-bold text-blue-600">₦{product.price}</span>
-            {product.oldPrice && (
-              <span className="text-gray-500 line-through text-lg">
-                ₦{product.oldPrice}
-              </span>
-            )}
-          </div>
-
-          <p className="mt-5 text-gray-700 leading-relaxed">
-            {product.description}
+export default function SingleProductPage({ product,error }: SingleProductPageProps) {
+  if (!product || error)
+    return (
+     <div className="max-w-7xl mx-auto px-4 py-8">
+          <p className="p-6 text-center text-red-600 font-semibold">
+            {error || "Product not found."}
           </p>
-
-          <div className="mt-6">
-            <p className="text-sm text-gray-600">
-              Category: <span className="font-semibold">{product.category}</span>
-            </p>
-            <p className="text-sm text-gray-600">
-              Availability:
-              <span className={`font-semibold ml-1 ${product.inStock ? "text-green-600" : "text-red-600"}`}>
-                {product.inStock ? "In Stock" : "Out of Stock"}
-              </span>
-            </p>
-          </div>
         </div>
+    );
 
-      </div>
-    </div>
-  );
+  return <ProductDetailsPage product={product} />;
 }
 
-// Generate paths for each product
-export async function getStaticPaths() {
-  const products = getAllProducts();
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const slug = params?.slug;
 
-  const paths = products.map((product) => ({
-    params: { slug: product.slug },
-  }));
-
-  return { paths, fallback: false };
-}
-
-// Fetch single product
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const slug = context.params?.slug as string;
-  const product = getProductBySlug(slug);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${slug}`);
+  const data = await res.json();
 
   return {
     props: {
-      product,
+      product: data.success ? data.product : null,
     },
   };
-}
+};

@@ -36,10 +36,49 @@ export interface Category {
   name: string;
   slug: string;
   image: string;
+  
 }
 
 export interface ProductCardProps {
   product: Product;
   onAddToCart?: (product: Product) => void;
   onAddToWishlist?: (product: Product) => void;
+}
+
+export interface CategoryCardProps {
+  category: Category;
+}
+
+export interface ProductDetailPageProps {
+  product: Product;
+  relatedProducts?: RelatedProduct[];
+}
+
+export interface RelatedProduct {
+  id: string;
+  title: string;
+  slug: string;
+  image: string;
+  price: number;
+  category?: string;
+  rating?: number;
+}
+
+export interface ProductCardProps {
+  product: Product;
+  onAddToCart?: (product: Product) => void;
+  onAddToWishlist?: (product: Product) => void;
+}
+
+export interface SingleProductPageProps {
+  product: Product | null;
+  error?: string;
+}
+
+export interface Review {
+  id: string;
+  name: string;
+  rating: number;
+  comment: string;
+  date: string;
 }

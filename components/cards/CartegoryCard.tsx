@@ -1,17 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Category } from "@/lib/types";
+import { CategoryCardProps  } from "../../interface";
 
-interface CategoryCardProps {
-  category: Category;
-}
+
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
     <Link
       href={`/category/${category.slug}`}
-      className="block border rounded-xl shadow-sm hover:shadow-md transition bg-white dark:bg-gray-900 dark:border-gray-700"
+      className="block border rounded-xl shadow-sm hover:shadow-md transition bg-blue-600"
     >
       {/* Category Image */}
       <div className="relative w-full aspect-square overflow-hidden rounded-t-xl">
