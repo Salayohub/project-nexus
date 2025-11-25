@@ -16,7 +16,7 @@ export interface ThemeProvider{
 }
 
 // Product Type
-export interface Product {
+export interface Products {
   id: string;
   title: string;
   slug: string;
@@ -40,9 +40,9 @@ export interface Category {
 }
 
 export interface ProductCardProps {
-  product: Product;
-  onAddToCart?: (product: Product) => void;
-  onAddToWishlist?: (product: Product) => void;
+  product: Products;
+  onAddToCart?: (product: Products) => void;
+  onAddToWishlist?: (product: Products) => void;
 }
 
 export interface CategoryCardProps {
@@ -50,7 +50,7 @@ export interface CategoryCardProps {
 }
 
 export interface ProductDetailPageProps {
-  product: Product;
+  product: Products;
   relatedProducts?: RelatedProduct[];
 }
 
@@ -65,13 +65,13 @@ export interface RelatedProduct {
 }
 
 export interface ProductCardProps {
-  product: Product;
-  onAddToCart?: (product: Product) => void;
-  onAddToWishlist?: (product: Product) => void;
+  product: Products;
+  onAddToCart?: (product: Products) => void;
+  onAddToWishlist?: (product: Products) => void;
 }
 
 export interface SingleProductPageProps {
-  product: Product | null;
+  product: Products | null;
   error?: string;
 }
 

@@ -1,4 +1,4 @@
-import { Product , Category } from "@/interface";
+import { Products , Category } from "@/interface";
 
 
 // ---------------------- CATEGORIES ----------------------
@@ -9,7 +9,7 @@ export const categories: Category[] = [
 ];
 
 // ---------------------- PRODUCTS ----------------------
-export const product: Product[] = [
+export const products: Products[] = [
   // Electronics (10 products)
 {
     id: "p1",
@@ -67,6 +67,7 @@ export const product: Product[] = [
     description: "Hisense 32-inch TV featuring HD clarity, responsive smart interface, multiple ports, enhanced picture processing, and compact design—great for budget-friendly users wanting reliable performance and quality visuals.",
     image: "/assets/tv-5.jpg",
     category: "electronics",
+    rating: 4.6,
     inStock: true,
 },
 {
@@ -77,6 +78,7 @@ export const product: Product[] = [
     description: "Samsung 55-inch smart TV offering crystal-clear 4K visuals, voice control support, seamless streaming, fast processor, and premium sound—perfect for home cinemas seeking immersive entertainment and advanced smart features.",
     image: "/assets/tv-6.jpg",
     category: "electronics",
+    rating: 4.6,
     inStock: true,
 },
 {
@@ -84,10 +86,12 @@ export const product: Product[] = [
     title: "LG Smart-TV-65inch",
     slug: "lg-smart-tv-65inch",
     price: 30000,
+    oldPrice: 40000,
     description: "LG 65-inch smart TV featuring ultra-HD resolution, vivid colors, AI-powered enhancements, intuitive smart interface, powerful speakers, and sleek frameless design—ideal for large living rooms and entertainment spaces.",
     image: "/assets/tv-7.jpg",
     category: "electronics",
     inStock: true,
+    rating: 4.6,
     badge: "New",
 },
 {
@@ -95,9 +99,11 @@ export const product: Product[] = [
     title: "Hisense Smart-TV-75inch",
     slug: "hisense-smart-tv-75inch",
     price: 4500,
+    oldPrice: 6000,
     description: "Hisense 75-inch smart TV delivering cinematic 4K visuals, Dolby-enhanced sound, smooth OS performance, multiple apps, and wide viewing angles—great choice for large rooms needing expansive immersive displays.",
     image: "/assets/tv-8.jpg",
     category: "electronics",
+    rating: 3.5,
     inStock: true,
 },
 {
@@ -105,18 +111,22 @@ export const product: Product[] = [
     title: "LG-Android-TV-85inch",
     slug: "lg-android-tv-85inch",
     price: 15000,
+    oldPrice: 25000,
     description: "LG 85-inch Android TV offering huge crystal display, Google Assistant, premium bass speakers, gaming optimization, quick WiFi performance, and smart app compatibility—designed for luxurious home theatre experiences.",
     image: "/assets/tv-9.jpg",
     category: "electronics",
+    rating: 4.6,
     inStock: true,
 },
 {
     id: "p10",
     title: "Samsung-4K-TV-100inch",
     slug: "samsung-4k-tv-100inch",
-    price: 1200,
+    price: 120000,
+    oldPrice: 150000,
     description: "Massive 100-inch Samsung 4K TV featuring breathtaking clarity, bright HDR display, immersive surround sound, advanced smart controls, and powerful processor—perfect for large entertainment setups and premium cinematic viewing.",
     image: "/assets/tv-10.jpg",
+    rating: 4.6,
     category: "electronics",
     inStock: true,
 }
@@ -128,6 +138,7 @@ export const product: Product[] = [
     slug: "mirrorless-camera",
     description: "Compact mirrorless camera offering fast autofocus, sharp image quality, 4K video recording, lightweight build, interchangeable lenses, and advanced shooting modes—perfect for creators seeking portability, flexibility, and exceptional performance.",
     price: 8000,
+    oldPrice: 14000,
     image: "/assets/camera-1.jpg",
     category: "camera",
     inStock: true,
@@ -138,8 +149,10 @@ export const product: Product[] = [
     slug: "point-and-shoot-camera",
     description: "Easy-to-use point-and-shoot camera with automatic settings, HD video recording, crisp photos, compact design, built-in flash, and ideal for travel or everyday photography without needing professional knowledge or bulky equipment.",
     price: 12000,
+    oldPrice :19000,
     image: "/assets/camera-2.jpg",
     category: "camera",
+    rating: 4.6,
     inStock: true,
   },
   {
@@ -148,9 +161,11 @@ export const product: Product[] = [
     slug: "turret-camera",
     description: "Durable turret security camera featuring infrared night vision, 1080p recording, weather resistance, wide-angle coverage, and motion detection—ideal for home and business surveillance with clear footage day or night.",
     price: 20000,
+    oldPrice: 35000,
     image: "/assets/camera-3.jpg",
     category: "camera",
     inStock: true,
+    rating: 3.6,
     badge: "Hot",
   },
   {
@@ -159,6 +174,7 @@ export const product: Product[] = [
     slug: "action-camera",
     description: "Rugged action camera built for sports and adventures, offering 4K video, waterproof housing, wide field of view, image stabilization, and slow-motion capture for immersive outdoor recording in extreme conditions.",
     price: 5000,
+    oldPrice: 10000,
     image: "/assets/camera-4.jpg",
     category: "camera",
     inStock: true,
@@ -169,6 +185,7 @@ export const product: Product[] = [
     slug: "360-camera",
     description: "Immersive 360-degree camera capturing full spherical views, 4K resolution, stabilization, mobile pairing, and creative shooting modes—perfect for virtual tours, travel content, and panoramic storytelling.",
     price: 22000,
+    oldPrice: 30000,
     image: "/assets/camera-5.jpg",
     category: "camera",
     inStock: true,
@@ -179,6 +196,7 @@ export const product: Product[] = [
     slug: "medium-format-camera",
     description: "High-end medium format camera delivering outstanding dynamic range, ultra-sharp detail, large sensor quality, interchangeable lenses, and professional controls—perfect for studio photography, portraits, fashion, and commercial work.",
     price: 18000,
+    oldPrice: 28000,
     image: "/assets/camera-6.jpg",
     category: "camera",
     inStock: true,
@@ -189,6 +207,7 @@ export const product: Product[] = [
     slug: "ip-camera",
     description: "Smart IP security camera offering remote monitoring, HD video, motion alerts, night vision, WiFi connectivity, and cloud storage—ideal for protecting homes or offices with real-time access from any device.",
     price: 25000,
+    oldPrice: 30000,
     image: "/assets/camera-7.jpg",
     category: "camera",
     inStock: true,
@@ -199,6 +218,7 @@ export const product: Product[] = [
     slug: "film-slr-camera",
     description: "Classic film SLR camera offering manual settings, interchangeable lenses, timeless photo aesthetics, durable body, and excellent creative control—perfect for photography enthusiasts seeking traditional film shooting experience.",
     price: 10000,
+    oldPrice: 17000,
     image: "/assets/camera-8.jpg",
     category: "camera",
     inStock: true,
@@ -209,6 +229,7 @@ export const product: Product[] = [
     slug: "compact-travel-camera",
     description: "Lightweight compact travel camera with optical zoom, crisp photos, HD video, quick shooting performance, and easy portability—designed for travelers needing a reliable camera without carrying heavy gear.",
     price: 3000,
+    oldPrice: 7000,
     image: "/assets/camera-9.jpg",
     category: "fashion",
     inStock: true,
@@ -229,9 +250,11 @@ export const product: Product[] = [
     title: "Samsung Galaxy S24 Ultra",
     slug: "samsung-galaxy-s24-ultra",
     description: "Premium Samsung flagship featuring powerful processor, 200MP camera, long-lasting battery, vibrant AMOLED display, S-Pen support, 5G connectivity, and exceptional performance for gaming, productivity, and photography.",
-    price: 12000,
+    price: 320000,
+    oldPrice: 34000,
     image: "/assets/phone-11.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
   {
@@ -239,9 +262,12 @@ export const product: Product[] = [
     title: "Samsung Galaxy S24+",
     slug: "samsung-galaxy-s24-plus",
     description: "High-performance smartphone with smooth AMOLED display, advanced triple-camera system, fast charging, 5G support, large battery, and sleek design—perfect for users wanting flagship features at a balanced size.",
-    price: 8000,
+    price: 800000,
+    oldPrice: 920000,
+
     image: "/assets/phone-2.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
   {
@@ -249,7 +275,8 @@ export const product: Product[] = [
     title: "Samsung Galaxy Z Flip 5",
     slug: "samsung-galaxy-z-flip-5",
     description: "Stylish foldable phone with compact design, powerful processor, flexible AMOLED display, improved hinge durability, advanced cameras, and convenient cover screen—ideal for modern users wanting portability and innovation.",
-    price: 15000,
+    price: 515000,
+    oldPrice: 630000,
     image: "/assets/phone-3.jpg",
     category: "phone-accessories",
     inStock: true,
@@ -259,9 +286,11 @@ export const product: Product[] = [
     title: "iPhone 15 Pro Max",
     slug: "iphone-15-pro-max",
     description: "Apple’s flagship featuring A17 chip, pro-grade cameras, 5x optical zoom, long battery life, titanium build, extremely bright display, and smooth performance—designed for creators and power users.",
-    price: 25000,
+    price: 2500000,
+    oldPrice:3000000,
     image: "/assets/phone-4.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
   {
@@ -269,9 +298,11 @@ export const product: Product[] = [
     title: "iPhone 15 Pro",
     slug: "iphone-15-pro",
     description: "Lightweight titanium design, powerful A17 chipset, advanced camera system, USB-C connectivity, impressive battery efficiency, and pro-level performance—ideal for users seeking top Apple features in a compact size.",
-    price: 7000,
+    price: 2000000,
+    oldPrice: 2500000,
     image: "/assets/phone-5.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
   {
@@ -279,18 +310,22 @@ export const product: Product[] = [
     title: "iPhone 15",
     slug: "iphone-15",
     description: "Beautiful design with powerful A16 chip, improved dual cameras, bright display, USB-C port, long battery life, and smooth performance—perfect for everyday users needing speed and reliability.",
-    price: 50000,
+    price: 1500000,
+    oldPrice: 1800000,
     image: "/assets/phone-6.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
   {
     id: "p27",
     title: "iPhone SE (2022)",
     slug: "iphone-se-2022",
-    price: 55000,
+    price: 255000,
+    oldPrice: 300000,
     description: "Compact budget-friendly iPhone offering A15 performance, Touch ID, 5G connectivity, excellent battery life, and durable build—ideal for users wanting Apple quality at an affordable price.",
     image: "/assets/phone-7.jpg",
+    rating: 4.6,
     category: "phone-accessories",
     inStock: true,
   },
@@ -299,9 +334,11 @@ export const product: Product[] = [
     title: "Samsung Galaxy A54 5G",
     slug: "samsung-galaxy-a54-5g",
     description: "Midrange Samsung phone with vibrant AMOLED screen, solid triple cameras, large battery, smooth performance, and 5G support—designed for users who want premium features without premium pricing.",
-    price: 120000,
+    price: 220000,
+    oldPrice: 320000,
     image: "/assets/phone-8.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
   {
@@ -309,7 +346,8 @@ export const product: Product[] = [
     title: "Google Pixel 8 Pro",
     slug: "google-pixel-8-pro",
     description: "Google’s flagship delivering AI-powered photography, bright OLED display, long battery life, Tensor chip performance, and clean Android experience—ideal for creators needing stunning computational images.",
-    price: 5000,
+    price: 855000,
+    oldPrice: 910000,
     image: "/assets/phone-9.jpg",
     category: "phone-accessories",
     inStock: true,
@@ -319,22 +357,34 @@ export const product: Product[] = [
     title: "Xiaomi 13 Pro",
     slug: "xiaomi-13-pro",
     description: "Powerful smartphone featuring Leica camera system, fast charging, flagship chipset, smooth display, and premium design—excellent for users seeking high performance and exceptional mobile photography.",
-    price: 8000,
+    price: 8000000,
+    oldPrice: 9000000,
     image: "/assets/phone-10.jpg",
     category: "phone-accessories",
+    rating: 4.6,
     inStock: true,
   },
 ];
 
 // ---------------------- HELPER FUNCTIONS ----------------------
-export const getProductsByCategory = (slug: string): Product[] => {
-  return product.filter((product) => product.category === slug);
-};
+// Get all products
+export function getAllProducts(): Products[] {
+  return products;
+}
 
-export const getProductBySlug = (slug: string): Product | undefined => {
-  return product.find((product) => product.slug === slug);
-};
+// Get product by slug
+export function getProductBySlug(slug: string): Products | undefined {
+  return products.find((product) => product.slug === slug);
+}
 
-export function getAllProducts() {
-  return product;
+// Get products by category
+export function getProductsByCategory(category: string): Products[] {
+  return products.filter(
+    (product) => product.category.toLowerCase() === category.toLowerCase()
+  );
+}
+
+// Get featured products
+export function getFeaturedProducts(limit: number = 4): Products[] {
+  return products.filter((product) => product.badge).slice(0, limit);
 }
