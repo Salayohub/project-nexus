@@ -82,3 +82,34 @@ export interface Review {
   comment: string;
   date: string;
 }
+
+// cart ||checkout ||wishlist section 
+
+export interface CartItem {
+  id: string;
+  title: string;
+  slug: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
+export interface WishlistItem {
+  id: string;
+  title: string;
+  slug: string;
+  image: string;
+  price: number;
+}
+
+export interface CheckoutFormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  paymentMethod: "card" | "transfer" | "cash";
+}

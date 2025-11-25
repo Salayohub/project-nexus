@@ -1,16 +1,22 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ShoppingCart, Heart } from "lucide-react";
+import { useRouter } from "next/router";
+import { ShoppingCart, Heart, Menu, X, Search, User } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
+import { useWishlist } from "@/contexts/WishlistContext";
 // import ThemeToggle from "../ buttons/ThemeToggle";
 
-const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+const Header: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
+  const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
 
   return (
-    <header className="w-full border-b bg-white">
+    <header className="w-full shadow-md sticky top-0 z-50 border bg-white">
       {/* -------------------- LAYER 1: TOP BAR -------------------- */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
-        
+
         {/* LOGO */}
         <Link href="/" className="text-2xl font-bold text-amber-500">
           MiMi Store
@@ -27,20 +33,46 @@ const Header = () => {
 
         {/* ICONS */}
         <div className="flex items-center gap-4">
-          <Link href="/wishlist" className="text-amber-500">
-            <Heart size={22} />
+
+          {/* Wishlist */}
+          <Link
+            href="/wishlist"
+            className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+            aria-label="Wishlist"
+          >
+            <Heart size={20} />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {wishlistCount}
+              </span>
+            )}
           </Link>
 
-          <Link href="/cart" className="text-amber-500">
-            <ShoppingCart size={22} />
+          {/* Cart */}
+          <Link
+            href="/cart"
+            className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCart size={20} />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Link>
 
-          {/* LIGHT/DARK MODE TOGGLE */}
-         ProductCard 
+          {/* User Icon */}
+          <button
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden md:block"
+            aria-label="User account"
+          >
+            <User size={20} />
+          </button>
 
-          {/* MOBILE SEARCH ICON (OPTIONAL ADDITION) */}
+          {/* Mobile Search Icon */}
           <button className="md:hidden text-gray-600">
-            <svg width="22" height="22" fill="none" stroke="currentColor"></svg>
+            <Search size={20} />
           </button>
         </div>
       </div>
@@ -51,20 +83,21 @@ const Header = () => {
 
           {/* HAMBURGER - MOBILE */}
           <button
-            className="md:hidden text-white"
-            onClick={() => setMenuOpen(true)}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+            aria-label="Toggle menu"
           >
-            <Menu size={26} />
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {/* LEFT SPACING (20%) — ONLY DESKTOP */}
           <div className="hidden md:block w-[20%]" />
 
-          {/* NAVBAR (50%) - DESKTOP ONLY */}
-          <nav className="hidden md:flex w-[50%] justify-center gap-8 text-white font-medium">
+          {/* DESKTOP NAV MENU */}
+          <nav className="hidden md:flex gap-8 text-white w-[50%] justify-center font-medium">
             <Link href="/">Home</Link>
-            <Link href="/shop">Shop</Link>
-            <Link href="/about">About Us</Link>
+            <Link href="/products">Products</Link>
+            <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
           </nav>
 
@@ -81,44 +114,51 @@ const Header = () => {
       </div>
 
       {/* -------------------- MOBILE SLIDE MENU -------------------- */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 flex">
-
-          {/* Backdrop */}
-          <div
-            className="flex-1 bg-black/50"
-            onClick={() => setMenuOpen(false)}
-          />
-
-          {/* Slide-out Menu */}
-          <div className="w-[70%] sm:w-[40%] md:hidden bg-white  h-full p-6 shadow-xl transition-all">
-
-            {/* Close Button */}
-            <button
-              onClick={() => setMenuOpen(false)}
-              className="mb-6 text-white"
+      {isMenuOpen && (
+        <nav className="md:hidden py-4 border-t bg-white">
+          <div className="flex flex-col gap-3">
+            <Link
+              href="/"
+              className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
+              onClick={() => setIsMenuOpen(false)}
             >
-              <X size={26} />
-            </button>
+              Home
+            </Link>
 
-            {/* Mobile Menu Links */}
-            <nav className="flex flex-col gap-6 text-lg">
-              <Link href="/">Home</Link>
-              <Link href="/products">Shop</Link>
-              <Link href="/about">About Us</Link>
-              <Link href="/contact">Contact Us</Link>
+            <Link
+              href="/products"
+              className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Products
+            </Link>
 
-              <div className="mt-10">
-                <Link
-                  href="/auth/login"
-                  className="px-5 py-2 bg-white text-blue-700 rounded-lg block text-center"
-                >
-                  Login / Register
-                </Link>
-              </div>
-            </nav>
+            <Link
+              href="/about"
+              className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About
+            </Link>
+
+            <Link
+              href="/contact"
+              className="px-4 py-2 hover:bg-gray-100 rounded transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </Link>
+
+            <div className="mt-6">
+              <Link
+                href="/auth/login"
+                className="px-5 py-2 bg-blue-600 text-white rounded-lg block text-center"
+              >
+                Login / Register
+              </Link>
+            </div>
           </div>
-        </div>
+        </nav>
       )}
     </header>
   );
