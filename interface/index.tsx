@@ -36,7 +36,9 @@ export interface Category {
   name: string;
   slug: string;
   image: string;
+  productCount?: number;
   
+
 }
 
 export interface ProductCardProps {
@@ -113,3 +115,27 @@ export interface CheckoutFormData {
   zipCode: string;
   paymentMethod: "card" | "transfer" | "cash";
 }
+
+// NEW: Hero Section Interface
+export interface HeroSlide {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  buttonText: string;
+  buttonLink: string;
+  bgColor?: string;
+}
+
+// NEW: Banner Interface
+export interface Banner {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  badge?: string;
+  position: "left" | "right" | "center";
+}
+

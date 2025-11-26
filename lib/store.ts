@@ -1,4 +1,4 @@
-import { Products , Category } from "@/interface";
+import { Products, HeroSlide, Banner, Category } from "@/interface";
 
 
 // ---------------------- CATEGORIES ----------------------
@@ -23,6 +23,7 @@ export const products: Products[] = [
     category: "electronics",
     inStock: true,
     badge: "Hot",
+    
 },
 {
     id: "p2",
@@ -367,24 +368,132 @@ export const products: Products[] = [
 ];
 
 // ---------------------- HELPER FUNCTIONS ----------------------
-// Get all products
+// NEW: Hero Slides Data
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: "1",
+    title: "Summer Collection 2025",
+    subtitle: "New Arrivals",
+    description: "Discover the latest trends in fashion and electronics",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200",
+    buttonText: "Shop Now",
+    buttonLink: "/products",
+    bgColor: "#4F46E5",
+  },
+  {
+    id: "2",
+    title: "Tech Gadgets Sale",
+    subtitle: "Up to 50% Off",
+    description: "Premium electronics at unbeatable prices",
+    image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=1200",
+    buttonText: "Explore Deals",
+    buttonLink: "/products?category=Electronics",
+    bgColor: "#DC2626",
+  },
+  {
+    id: "3",
+    title: "Wireless Freedom",
+    subtitle: "Best Audio Experience",
+    description: "Premium sound quality with latest technology",
+    image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=1200",
+    buttonText: "View Collection",
+    buttonLink: "/products?category=Audio",
+    bgColor: "#059669",
+  },
+];
+
+// NEW: Banners Data
+const BANNERS: Banner[] = [
+  {
+    id: "1",
+    title: "Smart Watches",
+    description: "Track your fitness goals",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+    link: "/products?category=Watches",
+    badge: "New",
+    position: "left",
+  },
+  {
+    id: "2",
+    title: "Premium Headphones",
+    description: "Immersive sound experience",
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
+    link: "/products?category=Audio",
+    badge: "Hot",
+    position: "center",
+  },
+  {
+    id: "3",
+    title: "Laptop Accessories",
+    description: "Essential gear for productivity",
+    image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600",
+    link: "/products?category=Accessories",
+    position: "right",
+  },
+];
+
+// NEW: Categories Data
+const CATEGORIES: Category[] = [
+  {
+    id: "1",
+    name: "Electronics",
+    slug: "electronics",
+    image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400",
+    productCount: 45,
+  },
+  {
+    id: "2",
+    name: "Fashion",
+    slug: "fashion",
+    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400",
+    productCount: 32,
+  },
+  {
+    id: "3",
+    name: "Home & Living",
+    slug: "home",
+    image: "https://images.unsplash.com/photo-1556912167-f556f1f39faa?w=400",
+    productCount: 28,
+  },
+  {
+    id: "4",
+    name: "Sports",
+    slug: "sports",
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400",
+    productCount: 19,
+  },
+];
+
+// Existing functions
 export function getAllProducts(): Products[] {
   return products;
 }
 
-// Get product by slug
 export function getProductBySlug(slug: string): Products | undefined {
   return products.find((product) => product.slug === slug);
 }
 
-// Get products by category
 export function getProductsByCategory(category: string): Products[] {
   return products.filter(
     (product) => product.category.toLowerCase() === category.toLowerCase()
   );
 }
 
-// Get featured products
 export function getFeaturedProducts(limit: number = 4): Products[] {
   return products.filter((product) => product.badge).slice(0, limit);
+}
+
+// NEW: Hero Functions
+export function getHeroSlides(): HeroSlide[] {
+  return HERO_SLIDES;
+}
+
+// NEW: Banner Functions
+export function getBanners(): Banner[] {
+  return BANNERS;
+}
+
+// NEW: Category Functions
+export function getCategories(): Category[] {
+  return CATEGORIES;
 }
