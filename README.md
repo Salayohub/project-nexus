@@ -1,225 +1,418 @@
-# Nexus E-commerce Project
+# 🛍️ Mimi Store - Modern E-Commerce Platform
 
-## Project Overview
+A full-featured, responsive e-commerce web application built with Next.js, TypeScript, and Tailwind CSS. Mimi Store offers a seamless shopping experience with dynamic product listings, cart management, wishlist functionality, and a complete checkout process.
 
-**Nexus** is a modern, scalable, and responsive e-commerce web application built using **Next.js**, **TypeScript**, and **Tailwind CSS**. The project is designed with a clean architecture to support maintainability, scalability, and high performance.
+![Next.js](https://img.shields.io/badge/Next.js-16.0.3-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0+-38bdf8)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-Key features of Nexus include:
+## ✨ Features
 
-* Dynamic product listing and filtering by category
-* SEO-friendly URLs using **slug-based routing** for products
-* Dark mode and light mode toggle
-* Modular, reusable components (cards, buttons, layout, forms)
-* Fully responsive design with mobile-first approach
-* Product, hero, and banner sections fetched dynamically via API routes (`pages/api`)
-* Global state management using **Context API**
-* Shopping cart and wishlist functionality
+### 🏠 Homepage
+- **Dynamic Hero Slider** - Auto-rotating hero section with smooth transitions
+- **Category Grid** - Browse products by categories
+- **Featured Products** - Showcase special and trending items
+- **Promotional Banners** - Eye-catching promotional sections
+- **Newsletter Subscription** - Email capture for marketing
 
----
+### 🛒 Shopping Experience
+- **Product Listing** - Grid layout with filtering options
+- **Product Details** - Comprehensive product information with image gallery
+- **Related Products** - Smart product recommendations
+- **Customer Reviews** - Rating and review system with local storage
+- **Add to Cart** - Instant cart updates with quantity management
+- **Wishlist** - Save favorite products for later
 
-## Project Structure
+### 🛍️ Cart & Checkout
+- **Shopping Cart** - Full cart management (add, remove, update quantities)
+- **Cart Count Badge** - Real-time cart item count in header
+- **Wishlist Badge** - Live wishlist count indicator
+- **Checkout Flow** - Multi-step checkout with form validation
+- **Order Summary** - Clear breakdown of costs and shipping
+- **Multiple Payment Methods** - Card, Bank Transfer, Cash on Delivery
 
-The project follows a **modular folder structure** for maintainability and scalability:
+### 🎨 UI/UX
+- **Responsive Design** - Mobile-first approach, works on all devices
+- **Dark Mode Ready** - Prepared for dark theme implementation
+- **Smooth Animations** - Subtle transitions and hover effects
+- **Loading States** - User-friendly loading indicators
+- **Error Handling** - Graceful error messages and fallbacks
+
+### 🔧 Technical Features
+- **SEO Optimized** - Server-side rendering with Next.js
+- **Dynamic Routing** - Product pages with slug-based URLs
+- **Context API** - Global state management for cart and wishlist
+- **Local Storage** - Persistent cart and wishlist data
+- **TypeScript** - Full type safety across the application
+- **API Routes** - RESTful API endpoints for data fetching
+
+## 📁 Project Structure
 
 ```
-/nexus
-│
-├─ /components             # Reusable UI components
-│   ├─ /button             # PrimaryButton, IconButton
-│   ├─ /auth               # Login, Register components
-│   ├─ /cards              # ProductCard, CategoryCard
-│   ├─ /common             # Shared components (Loader, Pagination, etc.)
-│   └─ /layout             # Header, Footer, ThemeToggle, Navbar
-│
-├─ /constants              # Global constants (routes, config, etc.)
-│
-├─ /contexts               # React Context API for global state
-│   └─ themeContext.tsx    # Light/Dark theme context
-│
-├─ /interfaces             # TypeScript interfaces and types
-│
-├─ /lib                    # Business logic, data store
-│   └─ store.ts            # Product and category store, helper functions
-│
-├─ /pages                  # Next.js pages (Pages Router)
-│   ├─ /api                # API routes for dynamic data fetching
-│   ├─ /products           # Dynamic product pages ([slug].tsx)
-│   ├─ about.tsx
-│   ├─ contact.tsx
-│   ├─ cart.tsx
-│   ├─ checkout.tsx
-│   ├─ index.tsx
-│   ├─ _app.tsx
-│   └─ _document.tsx
-│
-├─ /public                 # Public assets (images, fonts, icons)
-│
-├─ /styles                 # Global styles
-│   ├─ utilities           # Tailwind utility overrides
-│
-├─ next-env.d.ts            # Next.js TypeScript environment types
-├─ next.config.js           # Next.js configuration
-├─ package.json
-├─ postcss.config.mjs
-├─ tsconfig.json
-└─ README.md
+mimi-store/
+├── pages/
+│   ├── api/
+│   │   ├── products.ts              # All products endpoint
+│   │   ├── product/
+│   │   │   └── [slug].ts            # Single product by slug
+│   │   ├── hero.ts                  # Hero slider data
+│   │   ├── banners.ts               # Promotional banners
+│   │   └── categories.ts            # Product categories
+│   ├── products/
+│   │   ├── index.tsx                # Products listing page
+│   │   └── [slug].tsx               # Single product page
+│   ├── cart/
+│   │   └── index.tsx                # Shopping cart page
+│   ├── checkout/
+│   │   └── index.tsx                # Checkout page
+│   ├── wishlist/
+│   │   └── index.tsx                # Wishlist page
+│   ├── index.tsx                    # Homepage
+│   └── _app.tsx                     # App wrapper with providers
+├── components/
+│   ├── layout/
+│   │   ├── Layout.tsx               # Main layout wrapper
+│   │   ├── Header.tsx               # Navigation header
+│   │   └── Footer.tsx               # Footer component
+│   ├── home/
+│   │   ├── HeroSection.tsx          # Hero slider
+│   │   ├── BannerSection.tsx        # Promotional banners
+│   │   ├── Categories.tsx           # Category grid
+│   │   └── FeaturedProducts.tsx     # Featured items
+│   ├── cards/
+│   │   └── productCard.tsx          # Product card component
+│   └── common/
+│       └── ProductDetails.tsx       # Product detail view
+├── context/
+│   ├── CartContext.tsx              # Cart state management
+│   └── WishlistContext.tsx          # Wishlist state management
+├── lib/
+│   └── store.ts                     # Data store & helper functions
+├── styles/
+│   └── globals.css                  # Global styles
+├── interface.ts                     # TypeScript interfaces
+├── .env.local                       # Environment variables
+├── next.config.js                   # Next.js configuration
+├── tailwind.config.js               # Tailwind CSS configuration
+├── tsconfig.json                    # TypeScript configuration
+└── package.json                     # Dependencies
 ```
 
----
-
-## Key Technologies
-
-| Technology                   | Purpose                                             |
-| ---------------------------- | --------------------------------------------------- |
-| **Next.js**                  | Server-side rendering, routing, SEO optimization    |
-| **TypeScript**               | Strong typing, maintainable code, type safety       |
-| **Tailwind CSS**             | Utility-first CSS for responsive, scalable design   |
-| **React Context API**        | Global state management (theme, cart, wishlist)     |
-| **Lucide Icons**             | Modern SVG icons for UI elements                    |
-| **Slug Routing**             | SEO-friendly URLs for products and categories       |
-| **API Routes (`pages/api`)** | Dynamic fetching of products, hero section, banners |
-
----
-
-## Features
-
-### 1. Dynamic Product Pages
-
-* Products are fetched dynamically using **API routes** (`pages/api/products.ts`)
-* Each product has a **slug** for SEO-friendly URLs:
-
-  ```
-  /products/wireless-bluetooth-headphones
-  ```
-* Product details, images, price, rating, and badges (New/Hot) are displayed dynamically
-
-### 2. Category Filtering
-
-* Products can be filtered by category (`Electronics`, `Fashion`, `Home & Kitchen`)
-* `getProductsByCategory` helper function in `store.ts` supports dynamic filtering
-
-### 3. Hero & Banner Sections
-
-* Hero section and promotional banners are fetched dynamically through API routes
-* Configurable for quick updates without changing code
-
-### 4. Dark Mode / Light Mode
-
-* Global **ThemeContext** handles theme switching
-* Dark mode is fully compatible with Tailwind CSS
-* User preference is persisted in **localStorage**
-
-### 5. Responsive Layout
-
-* **Two-layer header**:
-
-  * **Layer 1 (white):** Logo, search bar, cart, wishlist, theme toggle
-  * **Layer 2 (blue):** Navbar (desktop) / Hamburger menu (mobile) with full-screen side menu
-* Footer is fully responsive and matches the modern e-commerce standard
-
-### 6. Reusable Components
-
-* **ProductCard** and **CategoryCard**: Reusable, typed with TypeScript
-* **PrimaryButton** and **IconButton**: Customizable, consistent styling
-* Components follow **atomic design principles** for scalability
-
-### 7. Cart & Wishlist
-
-* Cart and wishlist icons available in header
-* Cart items can be added dynamically via `onAddToCart` handlers
-* Wishlist allows easy product saving
-
-### 8. SEO & Performance
-
-* Slug-based routing for SEO-friendly URLs
-* SSR (Server-Side Rendering) where needed for better indexing
-* Image optimization using Next.js `<Image />` component can be integrated
-
----
-
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
-* Node.js v18+
-* npm or yarn
-* Tailwind CSS configured
+- Node.js 18+ 
+- npm or yarn
+- Git
 
 ### Installation
 
+1. **Clone the repository**
 ```bash
-# Clone repository
-git clone https://github.com/your-username/nexus.git
-cd nexus
+git clone https://github.com/yourusername/mimi-store.git
+cd mimi-store
+```
 
-# Install dependencies
+2. **Install dependencies**
+```bash
 npm install
+# or
+yarn install
+```
 
-# Run development server
+3. **Set up environment variables**
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+4. **Run the development server**
+```bash
 npm run dev
+# or
+yarn dev
 ```
 
-### Folder Conventions
+5. **Open your browser**
 
-* **components/** → UI elements
-* **contexts/** → React Context for theme and cart
-* **lib/store.ts** → Product and category data with helper functions
-* **pages/** → Next.js pages and API routes
-* **public/** → Images, icons, static assets
-* **styles/** → Tailwind CSS global and utility classes
+Navigate to [http://localhost:3000](http://localhost:3000)
 
----
+## 🔨 Build for Production
 
-## Example Usage
+```bash
+# Build the application
+npm run build
 
-### Fetching Products by Category
-
-```ts
-import { getProductsByCategory } from "@/lib/store";
-
-const electronicsProducts = getProductsByCategory("electronics");
+# Start production server
+npm start
 ```
 
-### Rendering a Product Card
+## 📝 Usage Guide
 
-```tsx
-import ProductCard from "@/components/cards/ProductCard";
-import { Product } from "@/lib/types";
+### Adding New Products
 
-const product: Product = { /* product object from store */ };
+Edit `lib/store.ts` and add products to the `PRODUCTS` array:
 
-<ProductCard
-  product={product}
-  onAddToCart={(product) => console.log("Added to cart", product)}
-  onAddToWishlist={(product) => console.log("Added to wishlist", product)}
-/>
+```typescript
+{
+  id: "5",
+  title: "New Product",
+  slug: "new-product",
+  price: 15000,
+  oldPrice: 20000,
+  image: "https://example.com/image.jpg",
+  description: "Product description here...",
+  category: "Electronics",
+  inStock: true,
+  badge: "New",
+  rating: 4.5,
+}
 ```
 
+### Customizing Hero Slides
+
+Edit `lib/store.ts` to modify the `HERO_SLIDES` array:
+
+```typescript
+{
+  id: "4",
+  title: "Your Custom Title",
+  subtitle: "Subtitle Here",
+  description: "Description text...",
+  image: "https://example.com/hero.jpg",
+  buttonText: "Shop Now",
+  buttonLink: "/products",
+  bgColor: "#4F46E5",
+}
+```
+
+### Adding Banners
+
+Modify the `BANNERS` array in `lib/store.ts`:
+
+```typescript
+{
+  id: "4",
+  title: "New Banner",
+  description: "Banner description",
+  image: "https://example.com/banner.jpg",
+  link: "/products?category=YourCategory",
+  badge: "Hot",
+  position: "center",
+}
+```
+
+## 🎨 Customization
+
+### Colors
+
+Edit `tailwind.config.js` to customize the color scheme:
+
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#4F46E5',
+        secondary: '#DC2626',
+        // Add your custom colors
+      }
+    }
+  }
+}
+```
+
+### Logo & Branding
+
+Update the logo in `components/layout/Header.tsx`:
+
+```typescript
+<Link href="/" className="text-2xl font-bold text-blue-600">
+  Mimi Store
+</Link>
+```
+
+## 🌐 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/products` | GET | Get all products |
+| `/api/product/[slug]` | GET | Get single product by slug |
+| `/api/hero` | GET | Get hero slider data |
+| `/api/banners` | GET | Get promotional banners |
+| `/api/categories` | GET | Get product categories |
+
+### Example API Response
+
+**GET /api/products**
+```json
+{
+  "success": true,
+  "products": [
+    {
+      "id": "1",
+      "title": "Wireless Headphones",
+      "slug": "wireless-headphones",
+      "price": 25000,
+      "image": "https://...",
+      "category": "Electronics",
+      "inStock": true
+    }
+  ]
+}
+```
+
+## 🧩 State Management
+
+### Cart Context
+
+```typescript
+import { useCart } from "@/context/CartContext";
+
+function MyComponent() {
+  const { cart, addToCart, removeFromCart, cartCount, cartTotal } = useCart();
+  
+  // Use cart methods
+  addToCart(product, quantity);
+  removeFromCart(productId);
+}
+```
+
+### Wishlist Context
+
+```typescript
+import { useWishlist } from "@/context/WishlistContext";
+
+function MyComponent() {
+  const { wishlist, addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  
+  // Use wishlist methods
+  addToWishlist(product);
+  removeFromWishlist(productId);
+}
+```
+
+## 📱 Responsive Breakpoints
+
+```css
+/* Mobile */
+@media (min-width: 640px) { /* sm */ }
+
+/* Tablet */
+@media (min-width: 768px) { /* md */ }
+
+/* Desktop */
+@media (min-width: 1024px) { /* lg */ }
+
+/* Large Desktop */
+@media (min-width: 1280px) { /* xl */ }
+```
+
+## 🐛 Troubleshooting
+
+### Cart not persisting
+- Check browser localStorage is enabled
+- Clear localStorage: `localStorage.clear()` in console
+
+### Images not loading
+- Verify image URLs are accessible
+- Check CORS settings if using external images
+
+### API 404 errors
+- Ensure API files are in correct directories
+- Restart dev server after adding new API routes
+
+### TypeScript errors
+- Run `npm run type-check` to see all type errors
+- Check `interface.ts` for proper type definitions
+
+## 🔐 Environment Variables
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `NEXT_PUBLIC_BASE_URL` | Base URL for API calls | Yes |
+
+## 📦 Dependencies
+
+### Core
+- **next** - React framework with SSR
+- **react** - UI library
+- **react-dom** - React DOM renderer
+- **typescript** - Type safety
+
+### UI & Styling
+- **tailwindcss** - Utility-first CSS framework
+- **lucide-react** - Icon library
+
+### Dev Dependencies
+- **@types/node** - Node.js type definitions
+- **@types/react** - React type definitions
+- **eslint** - Code linting
+- **autoprefixer** - CSS vendor prefixes
+- **postcss** - CSS transformations
+
+## 🚧 Roadmap
+
+### Planned Features
+- [ ] User authentication & accounts
+- [ ] Order history & tracking
+- [ ] Product search functionality
+- [ ] Advanced filtering & sorting
+- [ ] Payment gateway integration (Paystack, Flutterwave)
+- [ ] Admin dashboard
+- [ ] Product inventory management
+- [ ] Email notifications
+- [ ] Social media sharing
+- [ ] Dark mode toggle
+- [ ] Multi-language support
+- [ ] Product comparison
+- [ ] Customer support chat
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Code Style
+- Use TypeScript for all new files
+- Follow ESLint rules
+- Write meaningful commit messages
+- Add comments for complex logic
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Your Name** - *Initial work* - [YourGithub](https://github.com/yourusername)
+
+## 🙏 Acknowledgments
+
+- Next.js team for the amazing framework
+- Tailwind CSS for the utility-first approach
+- Lucide for beautiful icons
+- Unsplash for placeholder images
+
+## 📞 Support
+
+For support, email support@mimistore.com or open an issue on GitHub.
+
+## 🌟 Show Your Support
+
+Give a ⭐️ if you like this project!
+
 ---
 
-## Best Practices Followed
+**Made with ❤️ by Mimi Store Team**
 
-* **TypeScript** for strong typing
-* **Atomic component design** for scalability
-* **Tailwind CSS** for utility-first responsive design
-* **Slug routing** for SEO optimization
-* **Context API** for global state (theme, cart, wishlist)
-* **API routes** for dynamic data fetching
-* Fully **responsive** header, footer, and product listing
-
-
----
-
-## Future Enhancements
-
-* Integrate **Next.js Image Optimization** for faster load times
-* Add **real backend API** (Next.js API routes currently use static store)
-* Implement **user authentication** (JWT or OAuth)
-* Add **payment gateway integration** (Stripe, Paystack, PayPal)
-* Include **pagination and infinite scrolling** for product lists
-* Implement **server-side filtering & sorting**
-* Reusable **buttons, cards, and icons**
-* Dark mode implemented with **user preference persistence**
-
-
----
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/mimi-store)
