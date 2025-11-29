@@ -71,7 +71,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         {/* Logo/Brand */}
         <div className="text-center mb-8">
@@ -94,7 +94,7 @@ export default function LoginPage() {
           {/* Success Message */}
           {success && (
             <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
-              <CheckCircle className="text-green-600 flex-shrink-0" size={24} />
+              <CheckCircle className="text-green-600 shrink-0" size={24} />
               <div>
                 <p className="font-semibold text-green-800">Login Successful!</p>
                 <p className="text-sm text-green-600">Redirecting you...</p>
@@ -105,7 +105,7 @@ export default function LoginPage() {
           {/* Error Message */}
           {error && (
             <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3">
-              <AlertCircle className="text-red-600 flex-shrink-0" size={20} />
+              <AlertCircle className="text-red-600 shrink-0" size={20} />
               <p className="text-sm text-red-600">{error}</p>
             </div>
           )}

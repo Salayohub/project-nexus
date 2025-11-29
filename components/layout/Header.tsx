@@ -12,6 +12,20 @@ const Header: React.FC = () => {
   const { cartCount } = useCart();
   const { wishlistCount } = useWishlist();
 
+  // Check if user is logged in
+  const isLoggedIn = typeof window !== "undefined" && localStorage.getItem("user_logged_in") === "true";
+  const userName = typeof window !== "undefined" ? localStorage.getItem("user_name") : null;
+
+  const handleLogout = () => {
+    localStorage.removeItem("user_logged_in");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("auth_token");
+    router.push("/");
+  };
+
+
+  
   return (
     <header className="w-full shadow-md sticky top-0 z-50 border bg-white">
       {/* -------------------- LAYER 1: TOP BAR -------------------- */}
@@ -102,14 +116,38 @@ const Header: React.FC = () => {
           </nav>
 
           {/* LOGIN/REGISTER (30%) */}
-          <div className="hidden md:flex w-[30%] justify-end">
-            <Link
-              href="/auth/login"
-              className="px-5 py-2 bg-white text-blue-700 rounded-lg font-medium hover:bg-blue-100"
-            >
-              Login / Register
-            </Link>
-          </div>
+         
+            {/* User Account - Desktop */}
+            {isLoggedIn ? (
+              <div className="hidden md:flex items-center gap-3">
+                <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
+                  <User size={18} />
+                  <span className="text-sm font-medium">{userName}</span>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center gap-2">
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            )}
+
         </div>
       </div>
 
@@ -149,13 +187,46 @@ const Header: React.FC = () => {
               Contact
             </Link>
 
-            <div className="mt-6">
-              <Link
-                href="/auth/login"
-                className="px-5 py-2 bg-blue-600 text-white rounded-lg block text-center"
-              >
-                Login / Register
-              </Link>
+            {/* Mobile Auth Links */}
+              <div className="border-t pt-3 mt-3">
+                {isLoggedIn ? (
+                  <>
+                    <div className="px-4 py-2 mb-2 bg-gray-100 rounded">
+                      <div className="flex items-center gap-2">
+                        <User size={18} />
+                        <span className="font-medium">{userName}</span>
+                      </div>
+                    </div>
+
+
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                      className="w-full px-4 py-2 text-red-600 hover:bg-red-50 rounded transition-colors text-left"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      className="block px-4 py-2 hover:bg-gray-100 rounded transition-colors mb-2"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Sign Up
+                    </Link>
+                    </>
+                )}
             </div>
           </div>
         </nav>

@@ -151,3 +151,95 @@ export interface HeroSectionProps {
 export interface aboutUs{
   
 }
+
+// / ==================== AUTH INTERFACES ====================
+
+// Login Form Data
+export interface LoginFormData {
+  email: string;
+  password: string;
+}
+
+// Signup Form Data
+export interface SignupFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+}
+
+// Password Strength
+export interface PasswordStrength {
+  strength: "Weak" | "Medium" | "Strong" | "";
+  color: string;
+  width: string;
+}
+
+// User Data
+export interface User {
+  id: string;
+  fullName: string;
+  email: string;
+  phone?: string;
+  token?: string;
+  createdAt?: string;
+}
+
+// Auth Response
+export interface AuthResponse {
+  success: boolean;
+  message?: string;
+  user?: User;
+  token?: string;
+}
+
+// ==================== CONTACT FORM INTERFACE ====================
+export interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
+
+// ==================== API RESPONSE INTERFACES ====================
+export interface ApiResponse<T = any> {
+  success: boolean;
+  message?: string;
+  data?: T;
+}
+
+export interface ProductsApiResponse {
+  success: boolean;
+  products: Products[];
+  total?: number;
+}
+
+export interface SingleProductApiResponse {
+  success: boolean;
+  product: Products | null;
+}
+
+// ==================== ORDER INTERFACE ====================
+export interface Order {
+  id: string;
+  userId: string;
+  items: CartItem[];
+  total: number;
+  shippingFee: number;
+  status: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+  shippingAddress: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    address: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  paymentMethod: "card" | "transfer" | "cash";
+  createdAt: string;
+  updatedAt: string;
+}
