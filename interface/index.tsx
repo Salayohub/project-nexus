@@ -139,3 +139,15 @@ export interface Banner {
   position: "left" | "right" | "center";
 }
 
+export interface CategoriesSectionProps {
+  categories: Category[];
+}
+
+export interface HeroSectionProps {
+  slides: HeroSlide[];
+  
+}
+
+export interface aboutUs{
+  
+}

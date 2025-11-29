@@ -1,13 +1,6 @@
 import { Products, HeroSlide, Banner, Category } from "@/interface";
 
 
-// ---------------------- CATEGORIES ----------------------
-export const categories: Category[] = [
-  { id: "1", name: "Electronics", slug: "electronics", image: "/images/categories/electronics.jpg" },
-  { id: "2", name: "Camera", slug: "camera", image: "/images/categories/camera.jpg" },
-  { id: "3", name: "Phone & Accessories", slug: "phone-accessories", image: "/images/categories/phone-accessories.jpg" },
-];
-
 // ---------------------- PRODUCTS ----------------------
 export const products: Products[] = [
   // Electronics (10 products)
@@ -374,28 +367,28 @@ const HERO_SLIDES: HeroSlide[] = [
     id: "1",
     title: "Summer Collection 2025",
     subtitle: "New Arrivals",
-    description: "Discover the latest trends in fashion and electronics",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200",
+    description: "Discover the latest SAMSUNG CURVE SMART TV",
+    image: "/assets/electronics-hero.png",
     buttonText: "Shop Now",
-    buttonLink: "/products",
+    buttonLink: "/products?category=electronics",
     bgColor: "#4F46E5",
   },
   {
     id: "2",
     title: "Tech Gadgets Sale",
     subtitle: "Up to 50% Off",
-    description: "Premium electronics at unbeatable prices",
-    image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=1200",
+    description: "Premium MOBILE at unbeatable prices",
+    image: "/assets/phone-&-accessories.png",
     buttonText: "Explore Deals",
-    buttonLink: "/products?category=Electronics",
+    buttonLink: "/products?category=phone-accessories",
     bgColor: "#DC2626",
   },
   {
     id: "3",
-    title: "Wireless Freedom",
-    subtitle: "Best Audio Experience",
-    description: "Premium sound quality with latest technology",
-    image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=1200",
+    title: "Smart Digital Camera",
+    subtitle: "Best Vision Experience",
+    description: "Premium clean & quality image with latest technology",
+    image: "/assets/camera-hero.png",
     buttonText: "View Collection",
     buttonLink: "/products?category=Audio",
     bgColor: "#059669",
@@ -438,33 +431,33 @@ const CATEGORIES: Category[] = [
     id: "1",
     name: "Electronics",
     slug: "electronics",
-    image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400",
-    productCount: 45,
+    image: "/assets/electronics-cat.png",
+    productCount: 10,
   },
   {
     id: "2",
-    name: "Fashion",
-    slug: "fashion",
-    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400",
-    productCount: 32,
+    name: "camera",
+    slug: "camera",
+    image: "/assets/camera-cat.png",
+    productCount: 10,
   },
   {
     id: "3",
-    name: "Home & Living",
-    slug: "home",
-    image: "https://images.unsplash.com/photo-1556912167-f556f1f39faa?w=400",
+    name: "Phone & Accessories",
+    slug: "Phone & Accessories",
+    image: "/assets/phone-cat.png",
     productCount: 28,
   },
-  {
-    id: "4",
-    name: "Sports",
-    slug: "sports",
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400",
-    productCount: 19,
-  },
+  // {
+  //   id: "4",
+  //   name: "Sports",
+  //   slug: "sports",
+  //   image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400",
+  //   productCount: 19,
+  // },
 ];
 
-// Existing functions
+// Existing helper  functions
 export function getAllProducts(): Products[] {
   return products;
 }
@@ -473,15 +466,11 @@ export function getProductBySlug(slug: string): Products | undefined {
   return products.find((product) => product.slug === slug);
 }
 
-export function getProductsByCategory(category: string): Products[] {
-  return products.filter(
-    (product) => product.category.toLowerCase() === category.toLowerCase()
-  );
-}
 
-export function getFeaturedProducts(limit: number = 4): Products[] {
+export function getFeaturedProducts(limit: number = 5): Products[] {
   return products.filter((product) => product.badge).slice(0, limit);
 }
+
 
 // NEW: Hero Functions
 export function getHeroSlides(): HeroSlide[] {

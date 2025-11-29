@@ -2,11 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { HeroSlide } from "@/interface";
+import { HeroSectionProps } from "@/interface"
 
-interface HeroSectionProps {
-  slides: HeroSlide[];
-}
 
 const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,7 +31,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
   const slide = slides[currentSlide];
 
   return (
-    <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-gray-900">
+    <div className="relative w-full h-[400px] md:h-[600px] overflow-hidden bg-gray-700">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-all duration-700"
@@ -43,7 +40,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
         }}
       >
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        {/* <div className="absolute inset-0 bg-blue-400 bg-opacity-40"></div> */}
       </div>
 
       {/* Content */}
@@ -70,14 +67,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full transition-all"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 border-blue-600 border hover:bg-opacity-50 rounded-full transition-all"
         aria-label="Previous slide"
       >
         <ChevronLeft size={24} className="text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full transition-all"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 border-blue-600 border hover:bg-opacity-50 rounded-full transition-all"
         aria-label="Next slide"
       >
         <ChevronRight size={24} className="text-white" />

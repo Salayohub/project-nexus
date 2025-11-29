@@ -1,6 +1,5 @@
 // pages/index.tsx
 import { GetServerSideProps } from "next";
-import Layout from "@/components/layout/Layout";
 import HeroSection from "@/components/home/HeroSection";
 import BannerSection from "@/components/home/BannerSection";
 import CategoriesSection from "@/components/home/Categories";
@@ -28,13 +27,14 @@ export default function HomePage({
       {/* Categories */}
       <CategoriesSection categories={categories} />
 
-      {/* Banner Section */}
-      <BannerSection banners={banners} />
+   
 
       {/* Featured Products */}
       <FeaturedProducts products={featuredProducts} />
 
       {/* Newsletter Section (Optional) */}
+         {/* Banner Section */}
+      <BannerSection banners={banners} />
       <section className="bg-blue-600 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
