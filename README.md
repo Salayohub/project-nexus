@@ -392,16 +392,16 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
+## 👥 Author
 
-- **Your Name** - *Initial work* - [YourGithub](https://github.com/yourusername)
+- Abdulkareem Salahudeen - *Initial work* - [YourGithub](https://github.com/salayohub)
 
 ## 🙏 Acknowledgments
 
 - Next.js team for the amazing framework
 - Tailwind CSS for the utility-first approach
 - Lucide for beautiful icons
-- Unsplash for placeholder images
+- Unsplash for de images
 
 ## 📞 Support
 
