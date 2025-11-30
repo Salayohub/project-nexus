@@ -1,5 +1,5 @@
 // pages/checkout/index.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { useCart } from "@/contexts/CartContext";
@@ -30,23 +30,51 @@ export default function CheckoutPage() {
       [e.target.name]: e.target.value,
     });
   };
+ 
+  // =====handle submit==========
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsProcessing(true);
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsProcessing(true);
 
-    // Simulate payment processing
-    setTimeout(() => {
-      alert("Order placed successfully!");
-      clearCart();
-      router.push("/");
-    }, 2000);
-  };
+  try {
+    const response = await fetch("/api/paystack/initialize", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        amount: total,
+        metadata: {
+          cart,
+          customer: formData,
+        },
+      }),
+    });
 
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || "Payment initialization failed");
+      setIsProcessing(false);
+      return;
+    }
+
+    // Redirect to Paystack checkout
+    window.location.href = data.authorization_url;
+  } catch (error) {
+    alert("Payment error, try again.");
+    setIsProcessing(false);
+  }
+};
+
+ useEffect(() => {
   if (cart.length === 0) {
     router.push("/cart");
-    return null;
   }
+}, [cart]);
+
 
   const shippingFee = 2000;
   const total = cartTotal + shippingFee;

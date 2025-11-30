@@ -141,7 +141,7 @@ export interface Banner {
 
 export interface CategoriesSectionProps {
   categories: Category[];
-  Category: Category[];
+
 }
 
 export interface HeroSectionProps {
