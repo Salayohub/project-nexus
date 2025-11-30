@@ -1,4 +1,3 @@
-// components/common/ProductDetails.tsx
 
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -403,9 +402,14 @@ useEffect(() => {
   ))}
 </div>
 
+
+
         )}
       </div>
+
     </div>
+    
+    
   );
 };
 
@@ -499,7 +503,10 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ productId, onNewReview }) => {
         </button>
       </form>
     </div>
+    
   );
+  
 };
+
 
 export default ProductDetailsPage;

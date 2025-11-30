@@ -160,7 +160,7 @@ export const products: Products[] = [
     category: "camera",
     inStock: true,
     rating: 3.6,
-    badge: "Hot",
+    
   },
   {
     id: "p14",
@@ -172,6 +172,7 @@ export const products: Products[] = [
     image: "/assets/camera-4.jpg",
     category: "camera",
     inStock: true,
+    badge: "Hot",
   },
   {
     id: "p15",
@@ -194,6 +195,7 @@ export const products: Products[] = [
     image: "/assets/camera-6.jpg",
     category: "camera",
     inStock: true,
+    badge: "Hot",
   },
   {
     id: "p17",

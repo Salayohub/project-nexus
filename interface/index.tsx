@@ -193,6 +193,15 @@ export interface AuthResponse {
   user?: User;
   token?: string;
 }
+// ==============HOME PAGE =====================
+export interface HomePageProps {
+  heroSlides: HeroSlide[];
+  banners: Banner[];
+  categories: Category[];
+  featuredProducts: Products[];
+  allProducts: Products[];
+}
+
 
 // ==================== CONTACT FORM INTERFACE ====================
 export interface ContactFormData {
@@ -201,6 +210,15 @@ export interface ContactFormData {
   phone: string;
   subject: string;
   message: string;
+}
+
+// ===========newsletterprops =============
+export interface NewsletterProps {
+  title?: string;
+  subtitle?: string;
+  apiUrl?: string; // API endpoint to submit email
+  buttonText?: string;
+  variant?: "blue" | "dark" | "light"; // optional theme variants
 }
 
 // ==================== API RESPONSE INTERFACES ====================

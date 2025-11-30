@@ -1,24 +1,61 @@
 // pages/index.tsx
 import { GetServerSideProps } from "next";
+import { useState } from "react";
 import HeroSection from "@/components/home/HeroSection";
 import BannerSection from "@/components/home/BannerSection";
 import CategoriesSection from "@/components/home/Categories";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
-import { HeroSlide, Banner, Category, Products } from "@/interface";
+import {  Products,} from "@/interface";
+import ProductCard from "@/components/cards/productCard";
+import { HomePageProps } from "@/interface";
+import { ChevronDown } from "lucide-react";
+import Newsletter from "@/components/common/Newsletter";
 
-interface HomePageProps {
-  heroSlides: HeroSlide[];
-  banners: Banner[];
-  categories: Category[];
-  featuredProducts: Products[];
-}
 
 export default function HomePage({
   heroSlides,
   banners,
   categories,
   featuredProducts,
+   allProducts,
+
 }: HomePageProps) {
+
+   const [visibleProducts, setVisibleProducts] = useState(8);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  // Determine how many products to show based on screen size
+  const getInitialProductCount = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 640) return 6; // Small screen
+      return 8; // Medium and large screens
+    }
+    return 8;
+  };
+
+  const getLoadMoreCount = () => {
+    if (typeof window !== "undefined") {
+      if (window.innerWidth < 640) return 6; // Small: load 6 more
+      if (window.innerWidth < 1024) return 4; // Medium: load 4 more (2 rows)
+      return 4; // Large: load 4 more (1 row)
+    }
+    return 4;
+  };
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    
+    setTimeout(() => {
+      const loadCount = getLoadMoreCount();
+      setVisibleProducts((prev) => Math.min(prev + loadCount, allProducts.length));
+      setIsLoadingMore(false);
+    }, 500);
+  };
+
+  const displayedProducts = allProducts.slice(0, visibleProducts);
+  const hasMore = visibleProducts < allProducts.length;
+
+
   return (
     <div>
       {/* Hero Section */}
@@ -27,35 +64,85 @@ export default function HomePage({
       {/* Categories */}
       <CategoriesSection categories={categories} />
 
-   
+   {/* All Products Section */}
+      <section className="max-w-7xl mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold mb-2">All Products</h2>
+          <p className="text-gray-600">
+            Browse our complete collection of quality products
+          </p>
+        </div>
 
-      {/* Featured Products */}
-      <FeaturedProducts products={featuredProducts} />
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {displayedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
 
-      {/* Newsletter Section (Optional) */}
+        {/* Load More Button */}
+        {hasMore && (
+          <div className="mt-12 text-center">
+            <button
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+            >
+              {isLoadingMore ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  Loading...
+                </>
+              ) : (
+                <>
+                  Load More Products
+                  <ChevronDown size={20} />
+                </>
+              )}
+            </button>
+            <p className="text-sm text-gray-500 mt-3">
+              Showing {visibleProducts} of {allProducts.length} products
+            </p>
+          </div>
+        )}
+
+        {/* All Products Loaded Message */}
+        {!hasMore && allProducts.length > 0 && (
+          <div className="mt-12 text-center">
+            <div className="inline-block px-6 py-3 bg-gray-100 rounded-lg">
+              <p className="text-gray-600 font-medium">
+                ✨ You've seen all {allProducts.length} products
+              </p>
+            </div>
+          </div>
+        )}
+      </section>
+
+       {/* Newsletter Section (Optional) */}
          {/* Banner Section */}
       <BannerSection banners={banners} />
-      <section className="bg-blue-600 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
-          <p className="mb-6">
-            Get the latest updates on new products and upcoming sales
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-            />
-            <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-md hover:bg-gray-100 transition-colors">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
+   
+ {/* Featured Products */}
+      <FeaturedProducts products={featuredProducts} />
+      
+     
+     <Newsletter
+        title="Join Our Deals Mailing List"
+        subtitle="Exclusive discounts delivered to your inbox"
+        apiUrl="/api/newsletter"
+        buttonText="Join Now"
+        variant="blue"
+      />
+    
+
+     
+
     </div>
   );
 }
+
+
+
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
@@ -69,14 +156,17 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const bannersRes = await fetch(`${baseUrl}/api/banners`);
     const bannersData = await bannersRes.json();
 
-    // Fetch Categories (you can create an API for this too)
+    // Fetch Categories
     const categoriesRes = await fetch(`${baseUrl}/api/categories`);
     const categoriesData = await categoriesRes.json();
 
-    // Fetch Featured Products
+    // Fetch All Products
     const productsRes = await fetch(`${baseUrl}/api/products`);
     const productsData = await productsRes.json();
-    const featuredProducts = productsData.products?.filter((p: Products) => p.badge).slice(0, 8) || [];
+    const allProducts = productsData.products || [];
+
+    // Get Featured Products (products with badges)
+    const featuredProducts = allProducts.filter((p: Products) => p.badge).slice(0, 8);
 
     return {
       props: {
@@ -84,6 +174,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         banners: bannersData.banners || [],
         categories: categoriesData.categories || [],
         featuredProducts,
+        allProducts,
       },
     };
   } catch (error) {
@@ -94,6 +185,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         banners: [],
         categories: [],
         featuredProducts: [],
+        allProducts: [],
       },
     };
   }
