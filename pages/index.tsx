@@ -25,14 +25,14 @@ export default function HomePage({
    const [visibleProducts, setVisibleProducts] = useState(8);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-  // Determine how many products to show based on screen size
-  const getInitialProductCount = () => {
-    if (typeof window !== "undefined") {
-      if (window.innerWidth < 640) return 6; // Small screen
-      return 8; // Medium and large screens
-    }
-    return 8;
-  };
+  // // Determine how many products to show based on screen size
+  // const getInitialProductCount = () => {
+  //   if (typeof window !== "undefined") {
+  //     if (window.innerWidth < 640) return 6; // Small screen
+  //     return 8; // Medium and large screens
+  //   }
+  //   return 8;
+  // };
 
   const getLoadMoreCount = () => {
     if (typeof window !== "undefined") {
@@ -55,6 +55,21 @@ export default function HomePage({
 
   const displayedProducts = allProducts.slice(0, visibleProducts);
   const hasMore = visibleProducts < allProducts.length;
+
+  // Show loading state if no data
+  if (!heroSlides.length && !allProducts.length) {
+    return (
+      
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading...</p>
+          </div>
+        </div>
+      
+    );
+  }
+
 
 
   return (
