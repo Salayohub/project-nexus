@@ -45,7 +45,7 @@ const Newsletter: React.FC<NewsletterProps> = ({
   return (
     <section className={`${bgStyles[variant]} py-16`}>
       <div className="max-w-4xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-4">{title}</h2>
+        <h2 className="text-3xl text-amber-500 font-bold mb-4">{title}</h2>
         <p className="mb-6">{subtitle}</p>
 
         <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">

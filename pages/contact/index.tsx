@@ -1,5 +1,6 @@
 // pages/contact/index.tsx
 import React, { useState } from "react";
+import Link from "next/link";
 import { 
   MapPin, 
   Phone, 
@@ -57,7 +58,7 @@ export default function ContactPage() {
     
       <div className="bg-gray-50">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-blue-700 text-white py-16">
+        <section className="bg-linear-to-r from-blue-600 to-blue-700 text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h1>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
@@ -128,7 +129,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-3xl font-bold mb-2">Send Us A Message</h2>
+              <h2 className="text-3xl text-amber-600 font-bold mb-2">Send Us A Message</h2>
               <p className="text-gray-600 mb-8">
                 Fill out the form below and our team will get back to you within 24 hours.
               </p>
@@ -252,7 +253,7 @@ export default function ContactPage() {
             <div className="space-y-8">
               {/* FAQ Section */}
               <div className="bg-white rounded-lg shadow-lg p-8">
-                <h3 className="text-2xl font-bold mb-6">Frequently Asked Questions</h3>
+                <h3 className="text-2xl text-amber-600 font-bold mb-6">Frequently Asked Questions</h3>
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-semibold text-lg mb-2 flex items-center gap-2">
@@ -308,49 +309,52 @@ export default function ContactPage() {
               </div>
 
               {/* Social Media */}
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg shadow-lg p-8 text-white">
-                <h3 className="text-2xl font-bold mb-4">Connect With Us</h3>
+              <div className="bg-linear-to-br from-blue-600 to-blue-700 rounded-lg shadow-lg p-8 text-white">
+                <h3 className="text-2xl text-amber-600 font-bold mb-4">Connect With Us</h3>
                 <p className="mb-6 text-blue-100">
                   Follow us on social media for updates, deals, and more!
                 </p>
                 <div className="flex gap-4">
-                  
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
-                    aria-label="Facebook"
-                  
-                    <Facebook size={24} />
-                  <a>
-                  
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
-                    aria-label="Twitter"
-                  
-                    <Twitter size={24} />
-                  </a>
-                  
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
-                    aria-label="Instagram"
-                  
-                    <Instagram size={24} />
-                  <a>
-                  
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
-                    aria-label="LinkedIn"
-                  
-                    <Linkedin size={24} />
-                  </a>
-                </div>
+  <Link
+    href="https://facebook.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
+  >
+    <Facebook size={24} />
+  </Link>
+
+  <Link
+    href="https://twitter.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Twitter"
+    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
+  >
+    <Twitter size={24} />
+  </Link>
+
+  <Link
+    href="https://instagram.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
+  >
+    <Instagram size={24} />
+  </Link>
+
+  <Link
+    href="https://linkedin.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="LinkedIn"
+    className="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-lg flex items-center justify-center transition-colors"
+  >
+    <Linkedin size={24} />
+  </Link>
+</div>
               </div>
             </div>
           </div>
@@ -359,26 +363,27 @@ export default function ContactPage() {
         {/* Bottom CTA */}
         <div className="bg-gray-100 py-12">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h3 className="text-2xl font-bold mb-4">Need Immediate Assistance?</h3>
+            <h3 className="text-2xl text-amber-600 font-bold mb-4">Need Immediate Assistance?</h3>
             <p className="text-gray-600 mb-6">
               Our customer support team is available during business hours to help you with any urgent inquiries.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              
-                href="tel:+2348001234567"
-                className="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
-              
-                <Phone size={20} />
-                Call Now
-              <a>
-              
-                href="mailto:support@mimistore.com"
-                className="px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
-              
-                <Mail size={20} />
-                Email Us
-              </a>
-            </div>
+           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+  <Link
+    href="tel:+2348001234567"
+    className="px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+  >
+    <Phone size={20} />
+    Call Now
+  </Link>
+
+  <Link
+    href="mailto:support@mimistore.com"
+    className="px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+  >
+    <Mail size={20} />
+    Email Us
+  </Link>
+</div>
           </div>
         </div>
       </div>

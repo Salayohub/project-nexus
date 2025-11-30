@@ -70,18 +70,18 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-semibold text-amber-500 mb-3">Categories</h4>
             <ul className="space-y-2">
-              <li><Link href="#" className="hover:text-white">Men</Link></li>
-              <li><Link href="#" className="hover:text-white">Women</Link></li>
-              <li><Link href="#" className="hover:text-white">Kids</Link></li>
+              <li><Link href="/products" className="hover:text-white">Electronics</Link></li>
+              <li><Link href="/products" className="hover:text-white">Phone & accessories</Link></li>
+              <li><Link href="/products" className="hover:text-white">Camera</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold text-amber-500 mb-3 ">Top Brands</h4>
             <ul className="space-y-2">
-              <li><Link href="#" className="hover:text-white">Nike</Link></li>
-              <li><Link href="#" className="hover:text-white">Adidas</Link></li>
-              <li><Link href="#" className="hover:text-white">Gucci</Link></li>
+              <li><Link href="/products" className="hover:text-white">Samsung</Link></li>
+              <li><Link href="/products" className="hover:text-white">Iphone</Link></li>
+              <li><Link href="/products" className="hover:text-white">LG smart tv</Link></li>
             </ul>
           </div>
 
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold text-amber-500 mb-3">Important Links</h4>
             <ul className="space-y-2">
               <li><Link href="#" className="hover:text-white">About Us</Link></li>
-              <li><Link href="#" className="hover:text-white">FAQs</Link></li>
+              <li><Link href="/about" className="hover:text-white">FAQs</Link></li>
               <li><Link href="#" className="hover:text-white">Support</Link></li>
             </ul>
           </div>

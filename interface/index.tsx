@@ -24,7 +24,7 @@ export interface Products {
   oldPrice?: number;
   image: string;
   rating?: number;
-  category?: string;
+  category: string;
   inStock: boolean;
   badge?: string; // e.g. "New", "Hot"
   description?: string;
@@ -141,6 +141,7 @@ export interface Banner {
 
 export interface CategoriesSectionProps {
   categories: Category[];
+  Category: Category[];
 }
 
 export interface HeroSectionProps {
@@ -260,4 +261,8 @@ export interface Order {
   paymentMethod: "card" | "transfer" | "cash";
   createdAt: string;
   updatedAt: string;
+}
+
+export interface GetServerSideProps{
+
 }

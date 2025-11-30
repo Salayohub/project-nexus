@@ -1,6 +1,6 @@
 // pages/about/index.tsx
 import React from "react";
-import Layout from "@/components/layout/Layout";
+import Link from "next/link";
 import { 
   ShoppingBag, 
   Users, 
@@ -30,24 +30,24 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                  Welcome to<br />Mimi Store
+                <h1 className="text-5xl md:text-5xl font-bold mb-6 text-black leading-tight">
+                  Welcome to <span className="text-amber-500">Mimi Store</span>
                 </h1>
-                <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                <p className="text-xl text-black mb-8 leading-relaxed">
                   Your trusted partner in online shopping. We're dedicated to bringing you quality products, exceptional service, and an unforgettable shopping experience.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-4">
-                    <div className="text-3xl font-bold">5+</div>
-                    <div className="text-sm text-blue-100">Years Experience</div>
+                    <div className="text-3xl text-black font-bold">5+</div>
+                    <div className="text-sm text-blue-600">Years Experience</div>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-4">
-                    <div className="text-3xl font-bold">50K+</div>
-                    <div className="text-sm text-blue-100">Happy Customers</div>
+                    <div className="text-3xl  text-black font-bold">50K+</div>
+                    <div className="text-sm text-blue-600">Happy Customers</div>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-4">
-                    <div className="text-3xl font-bold">10K+</div>
-                    <div className="text-sm text-blue-100">Products Sold</div>
+                    <div className="text-3xl  text-black font-bold">10K+</div>
+                    <div className="text-sm text-blue-600">Products Sold</div>
                   </div>
                 </div>
               </div>
@@ -91,20 +91,24 @@ export default function AboutPage() {
                   </p>
                 </div>
                 
-                <div className="mt-8 flex gap-4">
-                  
+               
+
+               <div className="mt-8 flex gap-4">
+                    <Link
                     href="/products"
-                    className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                  
-                    Shop Now
-                  <a>
-                  
-                    href="/contact"
-                    className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-                  
-                    Contact Us
-                  </a>
-                </div>
+                   className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  >
+             Shop Now
+                   </Link>
+
+                   <Link
+                      href="/contact"
+                        className="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                   >
+                     Contact Us
+                    </Link>
+              </div>
+
               </div>
             </div>
           </div>
@@ -114,7 +118,7 @@ export default function AboutPage() {
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Mission & Vision</h2>
+              <h2 className="text-4xl text-amber-600 font-bold mb-4">Mission & Vision</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Guiding principles that drive everything we do
               </p>
@@ -150,7 +154,7 @@ export default function AboutPage() {
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Our Core Values</h2>
+              <h2 className="text-4xl text-amber-600 font-bold mb-4">Our Core Values</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 The principles that define who we are and how we work
               </p>
@@ -208,7 +212,7 @@ export default function AboutPage() {
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Why Choose Mimi Store?</h2>
+              <h2 className="text-4xl text-amber-600 font-bold mb-4">Why Choose Mimi Store?</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Here's what makes us different from the rest
               </p>
@@ -312,7 +316,7 @@ export default function AboutPage() {
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">Meet Our Team</h2>
+              <h2 className="text-4xl text-amber-600 font-bold mb-4">Meet Our Team</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 The passionate people behind Mimi Store
               </p>
@@ -390,7 +394,7 @@ export default function AboutPage() {
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4">What Our Customers Say</h2>
+              <h2 className="text-4xl text-amber-600 font-bold mb-4">What Our Customers Say</h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Real experiences from real customers
               </p>
@@ -461,23 +465,27 @@ export default function AboutPage() {
         <section className="py-20 `bg-linear-to-r` from-blue-600 to-blue-700 text-white">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-4xl font-bold mb-6">Ready to Start Shopping?</h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-blue-600 mb-8">
               Join thousands of satisfied customers and discover why Mimi Store is Nigeria's favorite online shopping destination.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              
-                href="/products"
-                className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              
-                Browse Products
-              <a>
-              
-                href="/contact"
-                className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
-              
-                Get In Touch
-              </a>
-            </div>
+           import Link from "next/link";
+
+<div className="flex flex-col sm:flex-row gap-4 justify-center">
+  <Link
+    href="/products"
+    className="px-8 py-4 bg-blue-600 text-white rounded-lg border font-semibold hover:bg-gray-100 transition-colors"
+  >
+    Browse Products
+  </Link>
+
+  <Link
+    href="/contact"
+    className="px-8 py-4 bg-transparent border-2 border-blue-600 text-blue-600 rounded-lg  font-semibold hover:bg-white/10 transition-colors"
+  >
+    Get In Touch
+  </Link>
+</div>
+
           </div>
         </section>
       </div>

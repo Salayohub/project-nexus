@@ -1,10 +1,11 @@
 // pages/products/index.tsx
+import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ProductCard from "@/components/cards/productCard";
 import { Products } from "@/interface";
 import { ChevronDown, Filter, X } from "lucide-react";
-import { CategoriesSectionProps } from "@/interface";
+import { getAllProducts } from "@/lib/api";
 
 export default function ProductsPage() {
   const router = useRouter();
@@ -36,10 +37,14 @@ export default function ProductsPage() {
         setFilteredProducts(products);
 
         // Extract unique categories
-        const uniqueCategories = Array.from(
-          new Set(products.map((p: Products) => p.category))
-        );
-        setCategories(uniqueCategories);
+       const categorySet = new Set<string>();
+products.forEach((product: Products) => {
+  if (product.category) {
+    categorySet.add(product.category);
+  }
+});
+const uniqueCategories = Array.from(categorySet);
+setCategories(uniqueCategories);
       } catch (error) {
         console.error("Failed to fetch products", error);
         setError("Failed to load products. Please refresh the page.");
@@ -66,8 +71,10 @@ export default function ProductsPage() {
     // Filter by category
     if (selectedCategory !== "all") {
       result = result.filter(
-        (product) => product.category.toLowerCase() === selectedCategory.toLowerCase()
-      );
+        (product) => {
+          return product.category && 
+          product.category.toLowerCase() === selectedCategory.toLowerCase()
+    });
     }
 
     // Sort by price
@@ -329,3 +336,9 @@ export default function ProductsPage() {
     
   );
 }
+
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const products = await getAllProducts();
+  return { props: { products } };
+};

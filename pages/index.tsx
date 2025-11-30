@@ -5,10 +5,11 @@ import HeroSection from "@/components/home/HeroSection";
 import BannerSection from "@/components/home/BannerSection";
 import CategoriesSection from "@/components/home/Categories";
 import FeaturedProducts from "@/components/home/FeaturedProducts";
-import {  Products,} from "@/interface";
 import ProductCard from "@/components/cards/productCard";
 import { HomePageProps } from "@/interface";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { getHomePageData } from "@/lib/api";
 import Newsletter from "@/components/common/Newsletter";
 
 
@@ -101,7 +102,7 @@ export default function HomePage({
               )}
             </button>
             <p className="text-sm text-gray-500 mt-3">
-              Showing {visibleProducts} of {allProducts.length} products
+              Showing {visibleProducts} {} products
             </p>
           </div>
         )}
@@ -110,9 +111,15 @@ export default function HomePage({
         {!hasMore && allProducts.length > 0 && (
           <div className="mt-12 text-center">
             <div className="inline-block px-6 py-3 bg-gray-100 rounded-lg">
-              <p className="text-gray-600 font-medium">
+              {/* <p className="text-gray-600 font-medium">
                 ✨ You've seen all {allProducts.length} products
-              </p>
+              </p> */}
+              <Link href="/products">
+              <button className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+              >Go to shop</button>
+              </Link>
+
+             
             </div>
           </div>
         )}
@@ -145,48 +152,6 @@ export default function HomePage({
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
-    // Fetch Hero Slides
-    const heroRes = await fetch(`${baseUrl}/api/hero`);
-    const heroData = await heroRes.json();
-
-    // Fetch Banners
-    const bannersRes = await fetch(`${baseUrl}/api/banners`);
-    const bannersData = await bannersRes.json();
-
-    // Fetch Categories
-    const categoriesRes = await fetch(`${baseUrl}/api/categories`);
-    const categoriesData = await categoriesRes.json();
-
-    // Fetch All Products
-    const productsRes = await fetch(`${baseUrl}/api/products`);
-    const productsData = await productsRes.json();
-    const allProducts = productsData.products || [];
-
-    // Get Featured Products (products with badges)
-    const featuredProducts = allProducts.filter((p: Products) => p.badge).slice(0, 8);
-
-    return {
-      props: {
-        heroSlides: heroData.slides || [],
-        banners: bannersData.banners || [],
-        categories: categoriesData.categories || [],
-        featuredProducts,
-        allProducts,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching homepage data:", error);
-    return {
-      props: {
-        heroSlides: [],
-        banners: [],
-        categories: [],
-        featuredProducts: [],
-        allProducts: [],
-      },
-    };
-  }
+  const data = await getHomePageData();
+  return { props: data };
 };

@@ -2,6 +2,7 @@
 import { GetServerSideProps } from "next";
 import ProductDetailsPage from "@/components/common/ProductDetails";
 import { Products } from "@/interface";
+import { getProductBySlug } from "@/lib/api";
 
 
 interface Props {
@@ -41,61 +42,9 @@ export default function SingleProductPage({ product, error, slug }: Props) {
   );
 }
 
+
+
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const slug = params?.slug;
-
-  console.log("SSR: Fetching product with slug:", slug); // Debug log
-
-  if (!slug || typeof slug !== "string") {
-    return {
-      props: {
-        product: null,
-        error: "Invalid product slug",
-        slug: slug || "unknown",
-      },
-    };
-  }
-
-  try {
-    // Use absolute URL for server-side fetching
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const url = `${baseUrl}/api/product/${slug}`;
-    
-    console.log("SSR: Fetching from URL:", url); // Debug log
-    
-    const res = await fetch(url);
-    
-    console.log("SSR: Response status:", res.status); // Debug log
-    
-    if (!res.ok) {
-      return {
-        props: {
-          product: null,
-          error: `Product not found`,
-          slug,
-        },
-      };
-    }
-
-    const data = await res.json();
-    
-    console.log("SSR: Data received:", data); // Debug log
-
-    return {
-      props: {
-        product: data.success ? data.product : null,
-        error: data.success ? null : data.message,
-        slug,
-      },
-    };
-  } catch (error) {
-    console.error("SSR: Error fetching product:", error);
-    return {
-      props: {
-        product: null,
-        error: "Failed to load product",
-        slug,
-      },
-    };
-  }
+  const product = await getProductBySlug(params?.slug as string);
+  return { props: { product } };
 };

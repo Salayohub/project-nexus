@@ -1,6 +1,9 @@
 import { Products, HeroSlide, Banner, Category } from "@/interface";
 
 
+
+
+
 // ---------------------- PRODUCTS ----------------------
 export const products: Products[] = [
   // Electronics (10 products)
@@ -227,7 +230,7 @@ export const products: Products[] = [
     price: 3000,
     oldPrice: 7000,
     image: "/assets/camera-9.jpg",
-    category: "fashion",
+    category: "camera",
     inStock: true,
   },
   // {
@@ -434,21 +437,21 @@ const CATEGORIES: Category[] = [
     name: "Electronics",
     slug: "electronics",
     image: "/assets/electronics-cat.png",
-    productCount: 10,
+    productCount: 0,
   },
   {
     id: "2",
     name: "camera",
     slug: "camera",
     image: "/assets/camera-cat.png",
-    productCount: 10,
+    productCount: 0,
   },
   {
     id: "3",
     name: "Phone & Accessories",
-    slug: "Phone & Accessories",
+    slug: "Phone-Accessories",
     image: "/assets/phone-cat.png",
-    productCount: 28,
+    productCount: 0,
   },
   // {
   //   id: "4",
@@ -459,7 +462,25 @@ const CATEGORIES: Category[] = [
   // },
 ];
 
-// Existing helper  functions
+// Helper function to calculate product counts
+function updateCategoryProductCounts() {
+  const categoryCounts: { [key: string]: number } = {};
+  
+  products.forEach((product) => {
+    const category = product.category.toLowerCase();
+    categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+  });
+
+  CATEGORIES.forEach((category) => {
+    const slug = category.slug.toLowerCase();
+    category.productCount = categoryCounts[slug] || 0;
+  });
+}
+
+// Update counts on initialization
+updateCategoryProductCounts();
+
+// Existing functions
 export function getAllProducts(): Products[] {
   return products;
 }
@@ -468,23 +489,28 @@ export function getProductBySlug(slug: string): Products | undefined {
   return products.find((product) => product.slug === slug);
 }
 
+export function getProductsByCategory(category: string): Products[] {
+  return products.filter(
+    (product) => product.category.toLowerCase() === category.toLowerCase()
+  );
+}
 
-export function getFeaturedProducts(limit: number = 5): Products[] {
+export function getFeaturedProducts(limit: number = 4): Products[] {
   return products.filter((product) => product.badge).slice(0, limit);
 }
 
-
-// NEW: Hero Functions
+// Hero Functions
 export function getHeroSlides(): HeroSlide[] {
   return HERO_SLIDES;
 }
 
-// NEW: Banner Functions
+// Banner Functions
 export function getBanners(): Banner[] {
   return BANNERS;
 }
 
-// NEW: Category Functions
+// Category Functions
 export function getCategories(): Category[] {
+  updateCategoryProductCounts(); // Update counts before returning
   return CATEGORIES;
 }
